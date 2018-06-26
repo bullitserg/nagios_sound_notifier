@@ -6,10 +6,11 @@ nagios_page_classes = ['statusBGCRITICAL', 'statusBGWARNING']
 
 metric_source = 'C:/Users/belim/PycharmProjects/Nagios sound notifier/metrics.source'
 
-prefix_sound = 'prefix.mp3'
-default_sound = 'default.mp3'
-play_command = 'nohup /usr/bin/mplayer %s > /dev/null 2> /dev/null &'
-sounds_dir = 'C:/Users/belim/PycharmProjects/Nagios sound notifier/sounds'
+prefix_text = 'Внимание!'
+default_text = 'Найдена новая ошибка.'
+
+play_command = 'nohup echo "%s" | festival --tts --language russian > /dev/null 2> /dev/null &'
+
 
 sleep_time = 5
 

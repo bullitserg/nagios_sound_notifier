@@ -11,7 +11,6 @@ from logger_module import logger
 
 nagios_local_page = normpath(nagios_local_page)
 metric_source = normpath(metric_source)
-sounds_dir = normpath(sounds_dir)
 log_file = normpath(log_file)
 
 
@@ -84,7 +83,7 @@ def main():
 
         # настало время проверить, надо ли по каким то оповестить
         error_strings = []
-        sound_files = []
+        play_texts = []
         for element in itertools.product(out_data, metric_list):
             for test in range(3):
                 if not element[0][test] == element[1][test] and element[1][test]:
@@ -99,21 +98,21 @@ def main():
                     logger.info(error_string)
 
                     # и найдем нужный звуковой файл
-                    sound_file = element[1][3]
-                    if not sound_file:
-                        sound_file = default_sound
-                    sound_files.append(sound_file)
+                    play_text = element[1][3]
+                    if not play_text:
+                        play_text = default_text
+                    play_texts.append(play_text)
 
         # обновляем сведения об обработанных ошибках
         last_error_strings = error_strings
         # настало время воспроизвести то, что мы нашли
         # создаем строку для воспроизведения с полными путями
-        sound_files = ' '.join([p_join(sounds_dir, file) for file in set(sound_files)])
-        if sound_files:
-            sound_files = ' '.join([p_join(sounds_dir, prefix_sound), sound_files])
-            notify_command = play_command % sound_files
+        play_texts = ' '.join(set(play_texts))
+        if play_texts:
+            play_texts = prefix_text + play_texts
+            notify_command = play_command % play_texts
             print(notify_command)
-            os.system(notify_command)
+#            os.system(notify_command)
             logger.info('Exec "%s"' % notify_command)
         sleep(sleep_time)
 
