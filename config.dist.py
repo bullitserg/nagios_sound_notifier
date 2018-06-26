@@ -8,9 +8,7 @@ metric_source = 'C:/Users/belim/PycharmProjects/Nagios sound notifier/metrics.so
 
 prefix_text = 'Внимание!'
 default_text = 'Найдена новая ошибка.'
-
 play_command = 'nohup echo "%s" | festival --tts --language russian > /dev/null 2> /dev/null &'
-
 
 sleep_time = 5
 

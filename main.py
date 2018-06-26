@@ -109,7 +109,7 @@ def main():
         # создаем строку для воспроизведения с полными путями
         play_texts = ' '.join(set(play_texts))
         if play_texts:
-            play_texts = prefix_text + play_texts
+            play_texts = prefix_text + ' ' + play_texts
             notify_command = play_command % play_texts
             print(notify_command)
 #            os.system(notify_command)
