@@ -2,15 +2,22 @@ import requests
 import re
 import os
 from time import sleep
+from os.path import join as p_join, normpath
 import sys
 import lxml.html as html
 import itertools
 from config import *
 from logger_module import logger
 
+nagios_web_page = normpath(nagios_web_page)
+nagios_local_page = normpath(nagios_local_page)
+metric_source = normpath(metric_source)
+sounds_dir = normpath(sounds_dir)
+
 
 def main():
-    logger.error('Nagios sound notifier started')
+
+    logger.info('Nagios sound notifier started')
 
     def _list_from_indexes_and_period(in_list, *indexes, period=2):
         """Функция выделяет из набора данных значения по индексу в заданном порядке, в рамках определенного периода
@@ -101,7 +108,7 @@ def main():
         last_error_strings = error_strings
         # настало время воспроизвести то, что мы нашли
         # создаем строку для воспроизведения с полными путями
-        sound_files = ' '.join(['/'.join([sounds_dir, file]) for file in set(sound_files)])
+        sound_files = ' '.join([p_join(sounds_dir, file) for file in set(sound_files)])
         if sound_files:
             sound_files = ' '.join([prefix_sound, sound_files])
             notify_command = play_command % sound_files

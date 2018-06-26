@@ -13,4 +13,3 @@ sounds_dir = 'C:/Users/belim/PycharmProjects/Nagios sound notifier/sounds'
 
 sleep_time = 5
 
-log_format = '[%(asctime)s]# > %(message)s'
