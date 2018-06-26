@@ -111,8 +111,7 @@ def main():
         if play_texts:
             play_texts = prefix_text + ' ' + play_texts
             notify_command = play_command % play_texts
-            print(notify_command)
-#            os.system(notify_command)
+            os.system(notify_command)
             logger.info('Exec "%s"' % notify_command)
         sleep(sleep_time)
 
