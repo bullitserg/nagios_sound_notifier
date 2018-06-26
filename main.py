@@ -110,8 +110,9 @@ def main():
         # создаем строку для воспроизведения с полными путями
         sound_files = ' '.join([p_join(sounds_dir, file) for file in set(sound_files)])
         if sound_files:
-            sound_files = ' '.join([prefix_sound, sound_files])
+            sound_files = ' '.join([p_join(sounds_dir, prefix_sound), sound_files])
             notify_command = play_command % sound_files
+            print(notify_command)
             os.system(notify_command)
             logger.info('Exec "%s"' % notify_command)
         sleep(sleep_time)
