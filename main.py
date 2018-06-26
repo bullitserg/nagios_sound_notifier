@@ -13,6 +13,7 @@ nagios_web_page = normpath(nagios_web_page)
 nagios_local_page = normpath(nagios_local_page)
 metric_source = normpath(metric_source)
 sounds_dir = normpath(sounds_dir)
+log_file = normpath(log_file)
 
 
 def main():
